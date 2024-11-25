@@ -1,7 +1,12 @@
-package edu.iesam.loginexam1eval
+package edu.iesam.loginexam1eval.features.user.data.local
 
 import android.content.Context
 import com.google.gson.Gson
+import edu.iesam.loginexam1eval.features.user.domain.User
+import java.util.ArrayList
+import kotlin.collections.forEach
+import kotlin.jvm.java
+import kotlin.let
 
 class LoginXmlLocalDataSource (private val context: Context) {
 
@@ -27,7 +32,7 @@ class LoginXmlLocalDataSource (private val context: Context) {
 
     fun findAll(): List<User>{
         val users = ArrayList<User>()
-        val mapUsers = sharedPref.all //as Map<String, String>
+        val mapUsers = sharedPref.all
         mapUsers.values.forEach { jsonUser ->
             val movie = gson.fromJson(jsonUser as String, User::class.java)
             users.add(movie)

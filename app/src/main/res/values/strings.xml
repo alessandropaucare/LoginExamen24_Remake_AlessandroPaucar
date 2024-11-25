@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LoginExam1Eval</string>
+    <string name="sign_up_button">Sign Up</string>
 </resources>
