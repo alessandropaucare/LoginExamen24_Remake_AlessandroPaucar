@@ -1,20 +1,16 @@
 package edu.iesam.loginexam1eval.features.user.data.local
 
-import android.content.Context
+import android.content.SharedPreferences
 import com.google.gson.Gson
 import edu.iesam.loginexam1eval.features.user.domain.User
-import java.util.ArrayList
-import kotlin.collections.forEach
-import kotlin.jvm.java
-import kotlin.let
+import org.koin.core.annotation.Single
 
-class LoginXmlLocalDataSource (private val context: Context) {
+@Single
+class LoginXmlLocalDataSource (
+    private val sharedPref: SharedPreferences,
+    private val gson: Gson = Gson()
+) {
 
-    private val sharedPref = context.getSharedPreferences(
-        "user-storage", Context.MODE_PRIVATE
-    )
-
-    private val gson = Gson()
 
     fun save(user: User) {
         val editor = sharedPref.edit()

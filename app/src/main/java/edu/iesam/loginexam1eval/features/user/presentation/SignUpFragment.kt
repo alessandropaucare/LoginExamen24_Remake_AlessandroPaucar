@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import edu.iesam.loginexam1eval.databinding.FragmentSignUpBinding
 import edu.iesam.loginexam1eval.features.user.domain.User
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,28 +30,35 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupObserver()
         setupView()
     }
 
     private fun setupView() {
+        binding.action.setOnClickListener{
         val username = binding.username.text.toString()
         val password = binding.password.text.toString()
         val user = User(username, password)
         viewModel.saveUser(user)
-        setupObserver()
+        }
     }
 
     private fun setupObserver() {
         val observer = Observer<LoginViewModel.UiState> { uiState ->
-            uiState.isSuccess?.let { boolean->
-                if(boolean){
-                Log.d("@dev","User saved succesfully")
+            uiState.isSuccess?.let { isSuccess->
+                if(isSuccess){
+                Log.d("@dev","User saved successfully")
+                    navigate()
                 }else{
                     Log.d("@dev","Said user already exists")
                 }
             }
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
+    }
+
+    private fun navigate(){
+            findNavController().navigate(SignUpFragmentDirections.signUpToWelome())
     }
 
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import edu.iesam.loginexam1eval.features.user.domain.SignInUpCase
+import edu.iesam.loginexam1eval.features.user.domain.SignUpUseCase
 import edu.iesam.loginexam1eval.features.user.domain.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
 class LoginViewModel(
-    private val signInUpCase: SignInUpCase
+    private val signInUpCase: SignUpUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()

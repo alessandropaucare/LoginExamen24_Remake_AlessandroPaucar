@@ -60,3 +60,6 @@ dependencies {
     testImplementation(libs.test.coroutines.android)
     testImplementation(libs.junit.api)
 }
+ksp {
+    arg("KOIN_CONFIG_CHECK", "true")
+}
