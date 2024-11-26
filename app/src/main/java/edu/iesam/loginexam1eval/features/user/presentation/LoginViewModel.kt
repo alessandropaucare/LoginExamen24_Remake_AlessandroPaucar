@@ -20,19 +20,16 @@ class LoginViewModel(
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState
 
-    fun saveUser(user : User){
-        viewModelScope.launch(Dispatchers.IO){
-            val response = signUpUseCase.invoke(user)
-            _uiState.postValue(
-                UiState(
-                    isSuccess = response
-                )
-            )
-        }
+    fun saveUser(user : User) {
+        executeUseCase(signUpUseCase::invoke,user)
     }
-    fun logUser(user : User){
+    fun logUser(user : User) {
+        executeUseCase(loginUseCase::invoke,user)
+    }
+
+    private fun executeUseCase(useCase: suspend (User)->Boolean,user: User){
         viewModelScope.launch(Dispatchers.IO){
-            val response = loginUseCase.invoke(user)
+            val response = useCase.invoke(user)
             _uiState.postValue(
                 UiState(
                     isSuccess = response

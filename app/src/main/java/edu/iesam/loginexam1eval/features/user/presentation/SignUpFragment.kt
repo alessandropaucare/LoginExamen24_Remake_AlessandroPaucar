@@ -37,10 +37,13 @@ class SignUpFragment : Fragment() {
 
     private fun setupView() {
         binding.action.setOnClickListener{
-        val username = binding.username.text.toString()
-        val password = binding.password.text.toString()
-        val user = User(username, password)
-        viewModel.saveUser(user)
+            binding.apply {
+                val username = username.text.toString()
+                val password = password.text.toString()
+                val user = User(username, password)
+                viewModel.saveUser(user)
+            }
+
         }
     }
 

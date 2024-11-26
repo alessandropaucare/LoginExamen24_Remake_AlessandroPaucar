@@ -35,13 +35,16 @@ class LoginFragment : Fragment() {
 
     }
     private fun setupView() {
-        binding.buttonLogin.setOnClickListener{
-            val username = binding.username.text.toString()
-            val password = binding.password.text.toString()
-            val user = User(username, password)
-            viewModel.logUser(user)
+        binding.buttonLogin.setOnClickListener {
+            binding.apply {
+                val username = username.text.toString()
+                val password = password.text.toString()
+                val user = User(username, password)
+                viewModel.logUser(user)
+            }
         }
     }
+
     private fun setupObserver() {
         val observer = Observer<LoginViewModel.UiState> { uiState ->
             uiState.isSuccess?.let { isSuccess->
