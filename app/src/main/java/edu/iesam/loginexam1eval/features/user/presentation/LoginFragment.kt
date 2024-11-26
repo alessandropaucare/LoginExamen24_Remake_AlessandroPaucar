@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import edu.iesam.loginexam1eval.databinding.FragmentLoginBinding
 
-class LoginFragment : Fragment(){
+class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
@@ -23,8 +22,9 @@ class LoginFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonLogin.setOnClickListener{
+        binding.buttonLogin.setOnClickListener {
 
         }
+    }
 
 }
