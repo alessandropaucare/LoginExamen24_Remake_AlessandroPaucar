@@ -33,6 +33,7 @@ class LoginFragment : Fragment() {
         setupObserver()
         setupView()
 
+
     }
     private fun setupView() {
         binding.buttonLogin.setOnClickListener {
@@ -60,6 +61,13 @@ class LoginFragment : Fragment() {
     }
     private fun navigate(){
         findNavController().navigate(LoginFragmentDirections.loginToWelcome())
+    }
+    private fun isChecked(){
+        val reminder = binding.reminder.isChecked
+        if(reminder){
+
+        }
+
     }
 
 }
