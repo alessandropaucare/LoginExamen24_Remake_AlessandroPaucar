@@ -32,6 +32,7 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
         setupView()
+        alreadyRegistered()
     }
 
     private fun setupView() {
@@ -47,7 +48,7 @@ class SignUpFragment : Fragment() {
         val observer = Observer<LoginViewModel.UiState> { uiState ->
             uiState.isSuccess?.let { isSuccess->
                 if(isSuccess){
-                Log.d("@dev","User saved successfully")
+                    Log.d("@dev","User saved successfully")
                     navigate()
                 }else{
                     Log.d("@dev","Said user already exists")
@@ -61,8 +62,10 @@ class SignUpFragment : Fragment() {
             findNavController().navigate(SignUpFragmentDirections.signUpToWelome())
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    private fun alreadyRegistered(){
+        binding.redirect.setOnClickListener {
+            findNavController().navigate(SignUpFragmentDirections.signUpToLogin())
+        }
     }
 
 }

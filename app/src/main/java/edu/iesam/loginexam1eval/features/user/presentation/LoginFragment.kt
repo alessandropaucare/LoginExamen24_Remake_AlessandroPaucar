@@ -46,10 +46,10 @@ class LoginFragment : Fragment() {
         val observer = Observer<LoginViewModel.UiState> { uiState ->
             uiState.isSuccess?.let { isSuccess->
                 if(isSuccess){
-                    Log.d("@dev","User saved successfully")
+                    Log.d("@dev","Login in...")
                     navigate()
                 }else{
-                    Log.d("@dev","Said user already exists")
+                    Log.d("@dev","Sorry wrong password or username. Try again.")
                 }
             }
         }
