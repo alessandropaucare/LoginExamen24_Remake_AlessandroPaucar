@@ -61,4 +61,8 @@ class SignUpFragment : Fragment() {
             findNavController().navigate(SignUpFragmentDirections.signUpToWelome())
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
 }

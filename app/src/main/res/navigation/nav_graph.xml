@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="edu.iesam.loginexam1eval.features.user.presentation.SignUpFragment"
+        android:name="edu.iesam.loginexam1eval.features.user.presentation.LoginFragment"
         android:label="Login">
         <action
             android:id="@+id/login_to_welcome"
