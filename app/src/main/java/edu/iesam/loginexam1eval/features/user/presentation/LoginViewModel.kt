@@ -12,7 +12,7 @@ import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
 class LoginViewModel(
-    private val signInUpCase: SignUpUseCase
+    private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
@@ -20,7 +20,7 @@ class LoginViewModel(
 
     fun saveUser(user : User){
         viewModelScope.launch(Dispatchers.IO){
-            val response = signInUpCase.invoke(user)
+            val response = signUpUseCase.invoke(user)
             _uiState.postValue(
                 UiState(
                     isSuccess = response
