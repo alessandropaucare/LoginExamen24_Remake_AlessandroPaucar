@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/sign_up">
+    <fragment
+        android:id="@+id/sign_up"
+        android:name="edu.iesam.loginexam1eval.features.user.presentation.SignUpFragment"
+        android:label="SignUp">
+        <action
+            android:id="@+id/sign_up_to_welome"
+            app:destination="@+id/welcome" />
+        <action
+            android:id="@+id/sign_up_to_login"
+            app:destination="@+id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="edu.iesam.loginexam1eval.features.user.presentation.LoginFragment"
+        android:label="Login">
+        <action
+            android:id="@+id/login_to_welcome"
+            app:destination="@+id/welcome" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcome"
+        android:name="edu.iesam.loginexam1eval.features.user.presentation.WelcomeFragment"
+        android:label="Welcome"/>
+</navigation>
