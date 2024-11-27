@@ -11,4 +11,5 @@
     <string name="xml_user_preferences">UserPreferences</string>
     <string name="delete_user">Want to remove your account?</string>
     <string name="_remove">Remove permanently</string>
+    <string name="prompt">Register form</string>
 </resources>
