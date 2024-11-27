@@ -32,10 +32,10 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
         setupView()
-
-
     }
+
     private fun setupView() {
+
         binding.buttonLogin.setOnClickListener {
             binding.apply {
                 val username = username.text.toString()
@@ -44,28 +44,44 @@ class LoginFragment : Fragment() {
                 viewModel.logUser(user)
             }
         }
+
+        viewModel.getLastLoggedUser()
+
+
     }
 
     private fun setupObserver() {
         val observer = Observer<LoginViewModel.UiState> { uiState ->
-            uiState.isSuccess?.let { isSuccess->
-                if(isSuccess){
-                    Log.d("@dev","Login in...")
+            uiState.user?.let { user ->
+                binding.apply {
+                    username.setText(user.id)
+                    password.setText(user.password)
+                }
+                binding.reminder.isChecked = true
+                isChecked(user)
+            }
+            uiState.isSuccess?.let { isSuccess ->
+                if (isSuccess) {
+                    Log.d("@dev", "Login in...")
                     navigate()
-                }else{
-                    Log.d("@dev","Sorry wrong password or username. Try again.")
+                } else {
+                    Log.d("@dev", "Sorry wrong password or username. Try again.")
                 }
             }
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
-    private fun navigate(){
+
+    private fun navigate() {
         findNavController().navigate(LoginFragmentDirections.loginToWelcome())
     }
-    private fun isChecked(){
-        val reminder = binding.reminder.isChecked
-        if(reminder){
 
+    private fun isChecked(user: User){
+        val reminder = binding.reminder.isChecked
+        if (reminder) {
+            viewModel.rememberLastLoggedUser(user)
+        } else {
+            viewModel.removeLastLoggedUser(user)
         }
 
     }

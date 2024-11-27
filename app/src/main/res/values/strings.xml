@@ -8,4 +8,5 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="already">Already registered?Click here.</string>
+    <string name="xml_user_preferences">UserPreferences</string>
 </resources>

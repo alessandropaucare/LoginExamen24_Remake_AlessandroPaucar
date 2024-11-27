@@ -4,7 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import edu.iesam.loginexam1eval.features.user.domain.DeleteLastLoggedUserUseCase
+import edu.iesam.loginexam1eval.features.user.domain.GestLastLoggedUserUseCase
 import edu.iesam.loginexam1eval.features.user.domain.LoginUseCase
+import edu.iesam.loginexam1eval.features.user.domain.RememberUserUseCase
 import edu.iesam.loginexam1eval.features.user.domain.SignUpUseCase
 import edu.iesam.loginexam1eval.features.user.domain.User
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +17,10 @@ import org.koin.android.annotation.KoinViewModel
 @KoinViewModel
 class LoginViewModel(
     private val signUpUseCase: SignUpUseCase,
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val rememberUseCase: RememberUserUseCase,
+    private val deleteLastLoggedUserUseCase: DeleteLastLoggedUserUseCase,
+    private val getLastLoggedUserUseCase: GestLastLoggedUserUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
@@ -25,6 +31,12 @@ class LoginViewModel(
     }
     fun logUser(user : User) {
         executeUseCase(loginUseCase::invoke,user)
+    }
+    fun rememberLastLoggedUser(user : User) {
+        executeUseCase(rememberUseCase::invoke,user)
+    }
+    fun removeLastLoggedUser(user : User) {
+        executeUseCase(deleteLastLoggedUserUseCase::invoke,user)
     }
 
     private fun executeUseCase(useCase: suspend (User)->Boolean,user: User){
@@ -37,8 +49,19 @@ class LoginViewModel(
             )
         }
     }
+    fun getLastLoggedUser(){
+        viewModelScope.launch(Dispatchers.IO){
+            val response = getLastLoggedUserUseCase.invoke()
+            _uiState.postValue(
+                UiState(
+                    user = response
+                )
+            )
+        }
+    }
 
     data class UiState(
+        val user: User? = null,
         val isSuccess: Boolean? = false
     )
 }
