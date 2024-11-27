@@ -26,8 +26,8 @@ class UserDataRepository(
         xmlUserPreferencesXmlLocalDataSource.save(user)
     }
 
-    override suspend fun deleteLastLoggedUser(id: String) {
-        xmlUserPreferencesXmlLocalDataSource.deleteById(id)
+    override suspend fun deleteLastLoggedUser() {
+        xmlUserPreferencesXmlLocalDataSource.delete()
     }
 
 }

@@ -6,8 +6,7 @@ import org.koin.core.annotation.Single
 class RememberUserUseCase(
     private val repository: UserRepository
 ) {
-    suspend operator fun invoke(user: User): Boolean{
+    suspend operator fun invoke(user: User){
         repository.saveLastLoggedUser(user)
-        return true
     }
 }

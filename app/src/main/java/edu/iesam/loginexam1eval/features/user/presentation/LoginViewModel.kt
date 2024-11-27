@@ -26,21 +26,28 @@ class LoginViewModel(
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState
 
-    fun saveUser(user : User) {
-        executeUseCase(signUpUseCase::invoke,user)
-    }
-    fun logUser(user : User) {
-        executeUseCase(loginUseCase::invoke,user)
-    }
-    fun rememberLastLoggedUser(user : User) {
-        executeUseCase(rememberUseCase::invoke,user)
-    }
-    fun removeLastLoggedUser(user : User) {
-        executeUseCase(deleteLastLoggedUserUseCase::invoke,user)
+    fun saveUser(user: User) {
+        executeUseCase(signUpUseCase::invoke, user)
     }
 
-    private fun executeUseCase(useCase: suspend (User)->Boolean,user: User){
-        viewModelScope.launch(Dispatchers.IO){
+    fun logUser(user: User) {
+        executeUseCase(loginUseCase::invoke, user)
+    }
+
+    fun rememberLastLoggedUser(user: User) {
+        viewModelScope.launch(Dispatchers.IO) {
+            rememberUseCase.invoke(user)
+        }
+    }
+
+    fun removeLastLoggedUser() {
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteLastLoggedUserUseCase.invoke()
+        }
+    }
+
+    private fun executeUseCase(useCase: suspend (User) -> Boolean, user: User) {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = useCase.invoke(user)
             _uiState.postValue(
                 UiState(
@@ -49,8 +56,9 @@ class LoginViewModel(
             )
         }
     }
-    fun getLastLoggedUser(){
-        viewModelScope.launch(Dispatchers.IO){
+
+    fun getLastLoggedUser() {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = getLastLoggedUserUseCase.invoke()
             _uiState.postValue(
                 UiState(

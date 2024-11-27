@@ -31,6 +31,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
+        viewModel.getLastLoggedUser()
         setupView()
     }
 
@@ -42,12 +43,13 @@ class LoginFragment : Fragment() {
                 val password = password.text.toString()
                 val user = User(username, password)
                 viewModel.logUser(user)
+                if(binding.reminder.isChecked){
+                    viewModel.rememberLastLoggedUser(user)
+                }else{
+                    viewModel.removeLastLoggedUser()
+                }
             }
         }
-
-        viewModel.getLastLoggedUser()
-
-
     }
 
     private fun setupObserver() {
@@ -57,8 +59,8 @@ class LoginFragment : Fragment() {
                     username.setText(user.id)
                     password.setText(user.password)
                 }
+
                 binding.reminder.isChecked = true
-                isChecked(user)
             }
             uiState.isSuccess?.let { isSuccess ->
                 if (isSuccess) {
@@ -76,14 +78,5 @@ class LoginFragment : Fragment() {
         findNavController().navigate(LoginFragmentDirections.loginToWelcome())
     }
 
-    private fun isChecked(user: User){
-        val reminder = binding.reminder.isChecked
-        if (reminder) {
-            viewModel.rememberLastLoggedUser(user)
-        } else {
-            viewModel.removeLastLoggedUser(user)
-        }
-
-    }
 
 }

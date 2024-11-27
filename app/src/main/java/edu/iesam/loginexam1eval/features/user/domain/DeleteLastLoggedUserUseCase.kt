@@ -6,8 +6,7 @@ import org.koin.core.annotation.Single
 class DeleteLastLoggedUserUseCase(
     private val repository: UserRepository
 ) {
-    suspend operator fun invoke(user: User): Boolean{
-        repository.saveLastLoggedUser(user)
-        return true
+    suspend operator fun invoke(){
+        repository.deleteLastLoggedUser()
     }
 }

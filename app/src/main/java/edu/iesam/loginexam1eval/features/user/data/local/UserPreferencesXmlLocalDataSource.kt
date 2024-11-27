@@ -21,7 +21,7 @@ class UserPreferencesXmlLocalDataSource (
         return gson.fromJson(storedUser,User::class.java)
     }
 
-    fun deleteById(userId: String){
-        sharedPrefUserPref.edit().remove(userId).commit()
+    fun delete() {
+        sharedPrefUserPref.edit().clear().apply()
     }
 }
