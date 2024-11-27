@@ -28,7 +28,11 @@
     <fragment
         android:id="@+id/welcome"
         android:name="edu.iesam.loginexam1eval.features.user.presentation.WelcomeFragment"
-        android:label="Welcome" />
+        android:label="Welcome">
+    <action
+        android:id="@+id/welcome_to_sign_up"
+        app:destination="@+id/sign_up" />
+    </fragment>
     <fragment
         android:id="@+id/remove"
         android:name="edu.iesam.loginexam1eval.features.user.presentation.RemoveUserFragment"

@@ -12,4 +12,5 @@
     <string name="delete_user">Want to remove your account?</string>
     <string name="_remove">Remove permanently</string>
     <string name="prompt">Register form</string>
+    <string name="go_to_start">Go back</string>
 </resources>
