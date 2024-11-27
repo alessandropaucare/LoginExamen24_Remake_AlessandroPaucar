@@ -30,4 +30,8 @@ class UserDataRepository(
         xmlUserPreferencesXmlLocalDataSource.delete()
     }
 
+    override suspend fun removeUserById(user: User) {
+        xmlLocalDataSource.deleteById(user.id)
+    }
+
 }

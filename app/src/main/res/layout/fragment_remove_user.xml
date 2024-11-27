@@ -12,26 +12,18 @@
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
     <EditText
         android:id="@+id/password"
-        android:hint="@string/password"
-        android:inputType="text"
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <CheckBox
-        android:id="@+id/reminder"
-        android:text="@string/reminder"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:hint="@string/password"
+        android:inputType="text" />
 
     <Button
-        android:id="@+id/button_login"
+        android:id="@+id/button_remove"
         android:layout_margin="16dp"
-        android:text="@string/action"
+        android:text="@string/_remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

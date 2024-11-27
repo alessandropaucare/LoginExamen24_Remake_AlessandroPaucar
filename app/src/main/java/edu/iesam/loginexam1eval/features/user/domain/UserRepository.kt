@@ -6,4 +6,5 @@ interface UserRepository {
     suspend fun getLastLoggedUserById() : User?
     suspend fun saveLastLoggedUser(user: User)
     suspend fun deleteLastLoggedUser()
+    suspend fun removeUserById(user: User)
 }

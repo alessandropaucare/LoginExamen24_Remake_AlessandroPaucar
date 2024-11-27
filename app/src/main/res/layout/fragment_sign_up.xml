@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:paddingTop="100dp">
 
     <EditText
         android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/username"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/password"
-        android:hint="@string/password"
-        android:inputType="text"
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/password"
+        android:inputType="text" />
+
     <Button
         android:id="@+id/action"
-        android:layout_margin="16dp"
-        android:text="@string/action"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/action" />
 
     <Button
         android:id="@+id/redirect"
+        style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/already"
-        style="@style/Widget.Material3.Button.TextButton"/>
+        android:text="@string/already" />
+
+    <Button
+        android:id="@+id/toRemove"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/delete_user" />
 
 </LinearLayout>

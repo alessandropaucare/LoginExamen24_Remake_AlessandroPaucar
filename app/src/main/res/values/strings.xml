@@ -3,10 +3,12 @@
     <string name="sign_up_button">Sign Up</string>
     <string name="welcome">Welcome</string>
     <string name="xml_users">User</string>
-    <string name="reminder">Rememeber me next time</string>
+    <string name="reminder">Remember me next time</string>
     <string name="action">Enter</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="already">Already registered?Click here.</string>
     <string name="xml_user_preferences">UserPreferences</string>
+    <string name="delete_user">Want to remove your account?</string>
+    <string name="_remove">Remove permanently</string>
 </resources>

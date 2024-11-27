@@ -8,6 +8,7 @@ import edu.iesam.loginexam1eval.features.user.domain.DeleteLastLoggedUserUseCase
 import edu.iesam.loginexam1eval.features.user.domain.GestLastLoggedUserUseCase
 import edu.iesam.loginexam1eval.features.user.domain.LoginUseCase
 import edu.iesam.loginexam1eval.features.user.domain.RememberUserUseCase
+import edu.iesam.loginexam1eval.features.user.domain.RemoveUserUseCase
 import edu.iesam.loginexam1eval.features.user.domain.SignUpUseCase
 import edu.iesam.loginexam1eval.features.user.domain.User
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,8 @@ class LoginViewModel(
     private val loginUseCase: LoginUseCase,
     private val rememberUseCase: RememberUserUseCase,
     private val deleteLastLoggedUserUseCase: DeleteLastLoggedUserUseCase,
-    private val getLastLoggedUserUseCase: GestLastLoggedUserUseCase
+    private val getLastLoggedUserUseCase: GestLastLoggedUserUseCase,
+    private val removeUseCase: RemoveUserUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
@@ -32,6 +34,9 @@ class LoginViewModel(
 
     fun logUser(user: User) {
         executeUseCase(loginUseCase::invoke, user)
+    }
+    fun removeUser(user: User) {
+        executeUseCase(removeUseCase::invoke, user)
     }
 
     fun rememberLastLoggedUser(user: User) {
@@ -67,6 +72,7 @@ class LoginViewModel(
             )
         }
     }
+
 
     data class UiState(
         val user: User? = null,
