@@ -20,6 +20,9 @@ android {
     buildTypes {
 
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -56,4 +59,7 @@ dependencies {
     testImplementation(libs.test.coroutines)
     testImplementation(libs.test.coroutines.android)
     testImplementation(libs.junit.api)
+}
+ksp {
+    arg("KOIN_CONFIG_CHECK", "true")
 }
